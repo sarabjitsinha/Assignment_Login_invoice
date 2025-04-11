@@ -46,7 +46,9 @@ const InvoiceForm = () => {
   }, [formik.values]);
 
   return (
-    <form onSubmit={formik.handleSubmit} className="p-4 max-w-3xl mx-auto space-y-4 mt-4">
+    <div>
+    <form onSubmit={formik.handleSubmit} className="p-6  flex gap-4 justify-end">
+      <section>
       <div>
         <label>Vendor</label>
         <br />
@@ -71,12 +73,16 @@ const InvoiceForm = () => {
         <input type="number" name="totalAmount" onChange={formik.handleChange} value={formik.values.totalAmount} className="outline-1"/>
         {formik.errors.totalAmount ? <div>{formik.errors.totalAmount}</div> : null}
       </div>
+      
+      
       <div>
         <label>Invoice Description</label>
         <br />
         <input name="invoiceDescription" onChange={formik.handleChange} value={formik.values.invoiceDescription} className="outline-1"/>
         {formik.errors.invoiceDescription ? <div>{formik.errors.invoiceDescription}</div> : null}
       </div>
+      </section>
+      <section>
       <div>
         <label>Line Amount</label>
         <br />
@@ -106,8 +112,13 @@ const InvoiceForm = () => {
         <br />
         <input name="description" onChange={formik.handleChange} value={formik.values.description} className="outline-1"/>
       </div>
-      <button type="submit" className="bg-blue-500 text-white px-4 py-2 rounded">Submit & Save</button>
+      </section>
+      
     </form>
+    <div className="flex justify-end">
+    <button type="submit" className="bg-blue-500 text-white px-4 py-2 rounded">Submit & Save</button>
+    </div>
+    </div>
   );
 };
 
