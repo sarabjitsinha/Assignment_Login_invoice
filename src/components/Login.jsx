@@ -33,7 +33,7 @@ function Login() {
     });
 
     return (
-        loggeduser=="false" ? (
+        loggeduser=="false" || loggeduser==undefined ? (
             <div className="flex items-center justify-center p-2">
                 <form onSubmit={formik.handleSubmit} className="m-auto">
                     <label htmlFor="username">Enter Username</label>
