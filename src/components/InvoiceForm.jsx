@@ -47,7 +47,7 @@ const InvoiceForm = () => {
 
   return (
     <div>
-    <form onSubmit={formik.handleSubmit} className="p-6  flex gap-4 justify-end">
+    <form onSubmit={formik.handleSubmit} className="p-6  flex gap-4 justify-center">
       <section>
       <div>
         <label>Vendor</label>

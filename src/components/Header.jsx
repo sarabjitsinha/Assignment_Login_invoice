@@ -1,8 +1,18 @@
 import { useNavigate } from "react-router-dom";
+import { Mycontext } from "./utils/Myprovider";
+import { useContext } from "react";
 
 function Header(){
-    const navigate=useNavigate()
-
+    const navigate=useNavigate();
+    const {setIsloggedin}=useContext(Mycontext)
+    const loggeduser=localStorage.getItem("loggedin")
+    function handleLogout(){
+        localStorage.removeItem("Name")
+        localStorage.setItem("loggedin",false)
+        setIsloggedin(false)
+        navigate("/")
+    }
+    console.log(loggeduser)
     return(
         <header className="bg-blue-200">
             
@@ -11,6 +21,7 @@ function Header(){
                 <li>Vendor Details</li>
                 <li>Invoice Details</li>
                 <li>Comments</li>
+                <span onClick={()=>handleLogout()} className=" hover:cursor-pointer">{loggeduser==="true" ? "Logout":null}</span>
             </nav>
 
         </header>
