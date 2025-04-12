@@ -90,14 +90,14 @@ const InvoiceForm = () => {
     <br />
     <h2 className="font-bold">General Information</h2>
 
-    <form onSubmit={formik.handleSubmit} className="flex flex-col gap-4 justify-center text-sm">
+    <form onSubmit={formik.handleSubmit} className="flex flex-col gap-4 justify-center text-sm" >
 
       <section>
     
       <div>
         <label>Po Number</label>
         <br />
-        <input type="number" name="poNumber" onChange={formik.handleChange} value={dummy ?  dummyObj.poNumber:formik.values.poNumber} className="w-full outline-1" />
+        <input type="number" name="poNumber" onChange={formik.handleChange} value={ dummy ?  dummyObj.poNumber:formik.values.poNumber} className="w-full outline-1" />
         {formik.errors.poNumber ? <div>{formik.errors.poNumber}</div> : null}
       </div>
 
@@ -204,7 +204,7 @@ const InvoiceForm = () => {
     <button type="submit" onClick={()=>setDummy(!dummy)} >{dummy ? "Clear dummy data":"Show Dummy data"}</button>
     <button type="submit" onClick={()=>{
       localStorage.removeItem("invoiceForm");
-      window.location.reload();
+      window.location.href="/"
       }}>Clear form</button>
     <button type="submit" className="bg-blue-500 text-white px-4 py-2 rounded" onClick={()=>alert("Data Saved SuccessFully")}>Submit & Save</button>
     
