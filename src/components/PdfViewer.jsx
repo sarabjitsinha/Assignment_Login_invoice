@@ -2,11 +2,17 @@
 import "./pdf.css"
 import React, { useState, useRef, useEffect } from 'react';
 import * as pdfjsLib from 'pdfjs-dist';
+import uplogo from "/upload.png"
+import test from "/test.pdf"
+import { Mycontext } from "./utils/Myprovider";
+import { useContext } from "react";
 
 // Set the PDF.js worker path
 pdfjsLib.GlobalWorkerOptions.workerSrc = '//cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.worker.min.js';
 
 const PdfViewer = () => {
+
+  const {dummy}=useContext(Mycontext)
   const [pdfDoc, setPdfDoc] = useState(null);
   const [pageNum, setPageNum] = useState(1);
   const [totalPages, setTotalPages] = useState(0);
@@ -26,7 +32,7 @@ const PdfViewer = () => {
     const viewport = page.getViewport({ scale, rotation: rotation });
     
     // Set canvas dimensions to match the viewport
-    canvas.height = viewport.height;
+    canvas.height = viewport.height*0.58;
     canvas.width = viewport.width;
     
     // Render the PDF page
@@ -104,8 +110,8 @@ const PdfViewer = () => {
 
   return (
     <div className="pdf-viewer">
-      <div className="pdf-header">
-        <h2>PDF Viewer</h2>
+       <div className="pdf-header">
+        <h2 >PDF Viewer</h2>
         <input
           type="file"
           ref={fileInputRef}
@@ -114,6 +120,22 @@ const PdfViewer = () => {
           className="file-input"
         />
       </div>
+      <div className="pdf-container">
+        {pdfDoc ? (
+          <canvas ref={canvasRef} />
+        ) : (
+          <>
+         
+          {dummy ?
+          <iframe src={test} frameborder="0" className="h-[50%] sm:h-[60%] md:h-[70%] md:w-[45%] absolute -mt-2"></iframe>:
+          <img src={uplogo} alt={"image"} srcset="" />
+        }
+       
+          </>
+        )}
+      </div>
+      
+      
 
       {pdfDoc && (
         <div className="controls-container">
@@ -142,13 +164,7 @@ const PdfViewer = () => {
         </div>
       )}
 
-      <div className="pdf-container">
-        {pdfDoc ? (
-          <canvas ref={canvasRef} />
-        ) : (
-          <div className="placeholder">Select a PDF file to view</div>
-        )}
-      </div>
+      
     </div>
   );
 };

@@ -10,9 +10,13 @@ function App() {
     <div >
      
       <Header/>
-      <div className='flex flex-col md:flex md:flex-row'>
+      <div className='flex flex-col md:flex md:flex-row md:justify-around '>
+        <div className='w-full'>
       <PdfViewer/>
+      </div>
+      <div className='w-full'>
       <InvoiceForm/>
+      </div>
       </div>
       
     </div>

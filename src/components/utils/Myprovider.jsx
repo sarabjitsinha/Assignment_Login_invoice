@@ -7,12 +7,18 @@ const user=localStorage.getItem("Name")
 function Myprovider({children}){
     const [name,setName]=useState(user)
     const [isLoggedin,setIsloggedin]=useState(false)
-    
-    console.log(isLoggedin)
+    const [dummy,setDummy]=useState(false)
     
     return(
 
-        <Mycontext.Provider value={{isLoggedin,setIsloggedin,name,setName}}>
+        <Mycontext.Provider value={{
+            isLoggedin,
+            setIsloggedin,
+            name,
+            setName,
+            dummy,
+            setDummy
+            }}>
             {children}
         </Mycontext.Provider>
     )
