@@ -3,9 +3,9 @@ import "./pdf.css"
 import React, { useState, useRef, useEffect } from 'react';
 import * as pdfjsLib from 'pdfjs-dist';
 import uplogo from "/upload.png"
-import test from "/test.pdf"
 import { Mycontext } from "./utils/Myprovider";
 import { useContext } from "react";
+import Newpdf from "./Newpdf";
 
 // Set the PDF.js worker path
 pdfjsLib.GlobalWorkerOptions.workerSrc = '//cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.worker.min.js';
@@ -125,10 +125,8 @@ const PdfViewer = () => {
           <canvas ref={canvasRef} />
         ) : (
           <>
-         
-          {dummy ?
-          <iframe src={test} frameborder="0" className="h-[50%] sm:h-[60%] md:h-[70%] md:w-[45%] absolute -mt-2"></iframe>:
-          <img src={uplogo} alt={"image"} srcset="" />
+          {dummy ? <Newpdf/>
+                   :<img src={uplogo} alt={"image"} />
         }
        
           </>
